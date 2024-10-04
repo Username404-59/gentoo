@@ -537,7 +537,9 @@ src_test() {
 }
 
 src_install() {
-	local libdir=${ED}/usr/lib/python${PYVER}
+	local t=""
+	! use gil && t="t"
+	local libdir=${ED}/usr/lib/python${PYVER}${t}
 
 	# -j1 hack for now for bug #843458
 	emake -j1 DESTDIR="${D}" TEST_MODULES=no altinstall
